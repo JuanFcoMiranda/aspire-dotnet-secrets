@@ -13,8 +13,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AspireFriday.Hosting.UserJwts\AspireFriday.Hosting.UserJwts.csproj" IsAspireProjectResource="false" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Scalar.Aspire" Version="0.9.34" />
-    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.18.0" />
   </ItemGroup>
 
 </Project>

@@ -8,6 +8,7 @@ var jwtSigningKey = builder.AddParameter(
     secret: true,
     persist: true);
 
+
 var signingKey = builder.AddJwtSigningToken(
     name: "signing-key",
     issuer: "dotnet-user-jwts",

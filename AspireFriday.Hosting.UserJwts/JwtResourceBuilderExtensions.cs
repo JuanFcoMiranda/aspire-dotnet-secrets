@@ -1,3 +1,4 @@
+using Aspire.Hosting.ApplicationModel;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -6,7 +7,7 @@ using System.Security.Claims;
 
 namespace Aspire.Hosting;
 
-internal static class JwtResourceBuilderExtensions
+public static class JwtResourceBuilderExtensions
 {
     private const string KeyId = "f30343ac";
     private const string Audience = "aspirefriday-api";
@@ -15,13 +16,14 @@ internal static class JwtResourceBuilderExtensions
     /// Configures the resource with JWT validation settings and adds a single
     /// command that mints a signed bearer token on demand.
     /// </summary>
-    public static IResourceBuilder<ProjectResource> WithJwtToken(
-        this IResourceBuilder<ProjectResource> builder,
+    public static IResourceBuilder<T> WithJwtToken<T>(
+        this IResourceBuilder<T> builder,
         IResourceBuilder<SigningTokenResource> signingToken,
         string commandName,
         string displayName,
         string description,
         IReadOnlyDictionary<string, JwtClaimDefault>? defaultClaims = null)
+        where T: IResourceWithEnvironment
     {
         // Inject the signing key as configuration so the service can validate tokens.
         builder
@@ -181,20 +183,5 @@ internal static class JwtResourceBuilderExtensions
         return Task.FromResult(result);
     }
 }
-
-internal sealed class SigningTokenResource(
-    string name,
-    string issuer,
-    IResourceBuilder<ParameterResource> signingKeyParameter) : Resource(name)
-{
-    public string Issuer { get; } = issuer;
-    public IResourceBuilder<ParameterResource> SigningKeyParameter { get; } = signingKeyParameter;
-}
-
-internal sealed record JwtClaimDefault(
-    string Value,
-    bool UserConfigurable = false,
-    string? Label = null,
-    string? Description = null);
 
 #pragma warning restore ASPIREINTERACTION001

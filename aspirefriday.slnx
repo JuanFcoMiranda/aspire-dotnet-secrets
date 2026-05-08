@@ -1,6 +1,7 @@
 <Solution>
   <Project Path="aspirefriday.ApiService/aspirefriday.ApiService.csproj" />
   <Project Path="aspirefriday.AppHost/aspirefriday.AppHost.csproj" />
+  <Project Path="AspireFriday.Hosting.UserJwts/AspireFriday.Hosting.UserJwts.csproj" />
   <Project Path="aspirefriday.ServiceDefaults/aspirefriday.ServiceDefaults.csproj" />
   <Project Path="aspirefriday.Tests/aspirefriday.Tests.csproj" />
 </Solution>
