@@ -18,7 +18,9 @@ public class WebTests
         var appHost = await DistributedApplicationTestingBuilder.CreateAsync<Projects.aspirefriday_AppHost>(cancellationToken);
         appHost.Services.ConfigureHttpClientDefaults(clientBuilder =>
         {
-            clientBuilder.AddStandardResilienceHandler();
+#pragma warning disable EXTEXP0001 // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.
+            clientBuilder.RemoveAllResilienceHandlers();
+#pragma warning restore EXTEXP0001 // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.
         });
 
         await using var app = await appHost.BuildAsync(cancellationToken).WaitAsync(DefaultTimeout, cancellationToken);
