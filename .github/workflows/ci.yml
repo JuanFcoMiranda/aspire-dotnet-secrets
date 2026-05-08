@@ -33,7 +33,7 @@ jobs:
         run: curl -sSL https://aspire.dev/install.sh | bash
 
       - name: 🔒 Trust dev certs
-        run: aspire certs trust
+        run: aspire certs trust --debug
 
       - name: 🧪 Test
         run: dotnet run --project aspirefriday.Tests/aspirefriday.Tests.csproj --no-build --configuration Release
